@@ -60,4 +60,5 @@ logs/
 Thumbs.db
 
 ignored/
-data/
+data/raw/
+data/orig/
