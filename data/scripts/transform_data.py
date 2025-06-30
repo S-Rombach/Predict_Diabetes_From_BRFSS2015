@@ -74,7 +74,7 @@ df = df.dropna(how="all")
 # 1 is for pre-diabetes or borderline diabetes, 2 is for yes diabetes
 # Remove all 7 (dont knows)
 # Remove all 9 (refused)
-df["DIABETE3"] = df["DIABETE3"].replace({2: "no dia", 3: "no_dia", 1: "pre", 4: "dia"})
+df["DIABETE3"] = df["DIABETE3"].replace({2: "no dia", 3: "no dia", 1: "pre", 4: "dia"})
 df = df[df.DIABETE3 != 7]
 df = df[df.DIABETE3 != 9]
 
