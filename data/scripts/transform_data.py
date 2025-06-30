@@ -8,7 +8,7 @@ the transformed data into the 'data' directory.
 
 ============================================================================
 DISCLAIMER: This script (and this alone) is a modification of Alex Teboul's
-original Diabetes Health Indicators Dataset Notebook. The idea, some decisions 
+original Diabetes Health Indicators Dataset Notebook. The idea, some decisions
 and names are inspired by his work.
 
 The original notebook is available at:
@@ -21,14 +21,23 @@ keeping missing values while also introducing readable values.
 
 import os
 import pandas as pd
+from pathlib import Path
+import sys
 
-DATA_DIR = os.path.join(".", "data")
-""" Directory for all data files, including raw and processed data. """
-DATA_RAW_DIR = os.path.join(DATA_DIR, "raw")
-""" Directory for raw data files, typically the orig after some form of preprocessing. """
-DATA_ORIG_DIR = os.path.join(DATA_DIR, "orig")
-""" Directory for original data files, typically downloaded from Kaggle. """
+# Ensure the script can find the config.py file in the project root
+sys.path.insert(
+    0,
+    next(
+        (
+            str(p)
+            for p in [Path.cwd(), *Path.cwd().parents]
+            if (p / "config.py").exists()
+        ),
+        "",
+    ),
+)
 
+from config import DATA_RAW_DIR, DATA_ORIG_DIR
 
 # Ensure the raw data directory exists
 os.makedirs(DATA_RAW_DIR, exist_ok=True)
