@@ -1,5 +1,5 @@
 [project]
-name = "cleanupdiabetes"
+name = "Predict_Diabetes_From_BRFSS2015"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
