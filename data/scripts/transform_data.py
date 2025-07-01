@@ -37,7 +37,7 @@ sys.path.insert(
     ),
 )
 
-from config import DATA_RAW_DIR, DATA_ORIG_DIR
+from config import DATA_RAW_DIR, DATA_ORIG_DIR, DATA_ORIG_FILENAME, DATA_RAW_FILENAME
 
 # Ensure the raw data directory exists
 os.makedirs(DATA_RAW_DIR, exist_ok=True)
@@ -69,7 +69,7 @@ new_column_names = {
 
 
 df = pd.read_csv(
-    os.path.join(DATA_ORIG_DIR, "2015.csv"),
+    os.path.join(DATA_ORIG_DIR, DATA_ORIG_FILENAME),
     usecols=list(new_column_names.keys()),
 )
 
@@ -84,6 +84,7 @@ df = df.dropna(how="all")
 # Remove all 7 (dont knows)
 # Remove all 9 (refused)
 df["DIABETE3"] = df["DIABETE3"].replace({2: "no dia", 3: "no dia", 1: "pre", 4: "dia"})
+df = df[df.DIABETE3.notna()]
 df = df[df.DIABETE3 != 7]
 df = df[df.DIABETE3 != 9]
 
@@ -262,6 +263,6 @@ df["INCOME2"] = df["INCOME2"].replace(
 df = df.rename(columns=new_column_names)
 
 df.to_csv(
-    os.path.join(DATA_RAW_DIR, "brfss_2015_transformed.csv"),
+    os.path.join(DATA_RAW_DIR, DATA_RAW_FILENAME),
     index=False,
 )
