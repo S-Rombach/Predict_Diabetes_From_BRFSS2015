@@ -38,7 +38,7 @@ data/processed/
 *.pkl
 *.h5
 *.joblib
-models/
+models/*/
 
 # Logs
 logs/
@@ -54,6 +54,10 @@ logs/
 .vscode/
 *.swp
 *.swo
+
+# binaries
+*.png
+
 
 # Betriebssystem-spezifische Dateien
 .DS_Store
