@@ -15,6 +15,8 @@ DATA_ORIG_DIR = os.path.join(DATA_DIR, "orig")
 """ Directory for original data files, typically downloaded from Kaggle. """
 DATA_SKRIPTS_DIR = os.path.join(DATA_DIR, "scripts")
 """ Directory for scripts related to data processing and transformation. """
+DATA_SPLIT_DIR = os.path.join(DATA_DIR, "split")
+""" Directory for split data files, such as training, test and validation sets. """
 
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 """ Directory for machine learning models and related files. """
