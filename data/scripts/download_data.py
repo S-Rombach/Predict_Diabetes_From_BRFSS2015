@@ -11,24 +11,8 @@ run the `prepare_data.py` script instead.
 """
 
 import os
-import sys
-from pathlib import Path
 
-# Ensure the script can find the config.py file in the project root
-sys.path.insert(
-    0,
-    next(
-        (
-            str(p)
-            for p in [Path.cwd(), *Path.cwd().parents]
-            if (p / "config.py").exists()
-        ),
-        "",
-    ),
-)
-
-
-from config import DATA_ORIG_DIR
+from src.config import DATA_ORIG_DIR
 
 KAGGLE_JSON_FILE = os.path.expanduser("~/.kaggle/kaggle.json")
 """ Path to the Kaggle API credentials file. This file is required for downloading datasets from Kaggle. """

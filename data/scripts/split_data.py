@@ -21,24 +21,10 @@ keeping missing values while also introducing readable values.
 
 import os
 import pandas as pd
-from pathlib import Path
-import sys
 from sklearn.model_selection import train_test_split
 
-# Ensure the script can find the config.py file in the project root
-sys.path.insert(
-    0,
-    next(
-        (
-            str(p)
-            for p in [Path.cwd(), *Path.cwd().parents]
-            if (p / "config.py").exists()
-        ),
-        "",
-    ),
-)
 
-from config import (
+from src.config import (
     DATA_RAW_DIR,
     DATA_SPLIT_DIR,
     DATA_RAW_FILENAME,
