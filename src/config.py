@@ -1,9 +1,21 @@
 # config.py
 import os
+from pathlib import Path
 
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+
+# Use 'pyproject.toml' file in the project root as indicator for the project root.
+# It is also possible to hard code this variable to the project path.
+BASE_DIR = next(
+    (str(p) for p in [Path.cwd(), *Path.cwd().parents] if (p / "pyproject.toml").exists()),
+    "",
+)
 """ Base directory of the project, used to construct paths relative to this script. """
 
+if BASE_DIR is None or BASE_DIR == "":
+    raise FileNotFoundError("Could not find 'pyproject.toml' as indicator of the project root."
+                            " Initialization of directory constants is not possible."
+                            " Add a file with name to the project root or change the"
+                            " evaluation mechanism in 'src/config.py'.")
 
 
 

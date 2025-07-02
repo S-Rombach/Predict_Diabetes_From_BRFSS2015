@@ -21,23 +21,13 @@ keeping missing values while also introducing readable values.
 
 import os
 import pandas as pd
-from pathlib import Path
-import sys
 
-# Ensure the script can find the config.py file in the project root
-sys.path.insert(
-    0,
-    next(
-        (
-            str(p)
-            for p in [Path.cwd(), *Path.cwd().parents]
-            if (p / "config.py").exists()
-        ),
-        "",
-    ),
+from src.config import (
+    DATA_RAW_DIR,
+    DATA_ORIG_DIR,
+    DATA_ORIG_FILENAME,
+    DATA_RAW_FILENAME,
 )
-
-from config import DATA_RAW_DIR, DATA_ORIG_DIR, DATA_ORIG_FILENAME, DATA_RAW_FILENAME
 
 # Ensure the raw data directory exists
 os.makedirs(DATA_RAW_DIR, exist_ok=True)
