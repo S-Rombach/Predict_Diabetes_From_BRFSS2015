@@ -33,4 +33,6 @@ All evaluation was done on a held-out test set.
 
 ## Data
 
+Data source: https://www.kaggle.com/datasets/cdc/behavioral-risk-factor-surveillance-system
+Related paper: https://www.cdc.gov/pcd/issues/2019/19_0109.htm
 TODO
