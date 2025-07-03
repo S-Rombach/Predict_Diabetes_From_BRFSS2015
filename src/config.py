@@ -44,3 +44,6 @@ VALIDATION_RAW_FILENAME = "validation_raw_split.csv"
 
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 """ Directory for machine learning models and related files. """
+
+STUDY_DIR = os.path.join(BASE_DIR, "studies")
+""" Directory for optuna studies and related files. """
