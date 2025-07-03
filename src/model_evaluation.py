@@ -17,6 +17,7 @@ from sklearn.metrics import (
 from typing import List, Union, Optional, Dict, Any
 import numpy as np
 from sklearn.base import BaseEstimator
+from datetime import datetime
 
 def evaluate_classifier(
     classifier: BaseEstimator,
@@ -24,7 +25,7 @@ def evaluate_classifier(
     target_truth: Union[pd.Series, np.ndarray],
     target_pred: Union[pd.Series, np.ndarray],
     target_pred_proba: Optional[np.ndarray],
-    timestamp: str,
+    timestamp: datetime,
     model_purpose: str,
     special_features: str,
     avg_mode: str = "weighted",
@@ -44,7 +45,7 @@ def evaluate_classifier(
         Predicted target labels.
     target_pred_proba : array-like or None
         Predicted probabilities (used for ROC AUC calculation). Can be None.
-    timestamp : str
+    timestamp : datetime
         Timestamp string for unique model identification.
     model_purpose : str
         Description of the model's purpose or context.
@@ -79,11 +80,15 @@ def evaluate_classifier(
             target_truth, target_pred_proba, multi_class="ovo"
         )
 
-    model_name = f"{timestamp}_{classifier.__class__.__name__}_f1{int(f1_score_val * 1000):05d}_{model_purpose}_{special_features}"
+    timestamp_str = timestamp.strftime("%Y%m%d%H%M%S")
+
+    model_name = f"{timestamp_str}_{classifier.__class__.__name__}_f1{int(f1_score_val * 1000):05d}_{model_purpose}_{special_features}"
+
+    
 
     results = {
         "model_name": model_name,
-        "timestamp": timestamp,
+        "timestamp": timestamp_str,
         "model_purpose": model_purpose,
         "model_class": classifier.__class__.__name__,
         "special_features": special_features,
