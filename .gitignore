@@ -39,6 +39,10 @@ data/processed/
 *.h5
 *.joblib
 models/*/
+model_training/iframe_figures/
+
+# Studies
+studies/
 
 # Logs
 logs/
