@@ -15,7 +15,7 @@
 In the project folder:
 
 ```
-uv init
+uv sync
 & ./.venv/Scripts/python.exe ./data/scripts/download_data.py
 & ./.venv/Scripts/python.exe ./data/scripts/transform_data.py
 & ./.venv/Scripts/python.exe ./data/scripts/split_data.py
