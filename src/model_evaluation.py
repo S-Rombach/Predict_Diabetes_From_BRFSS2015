@@ -76,9 +76,14 @@ def evaluate_classifier(
 
     roc_auc_score_val = pd.NA
     if target_pred_proba is not None:
-        roc_auc_score_val = roc_auc_score(
-            target_truth, target_pred_proba, multi_class="ovo"
-        )
+        if target_pred_proba.ndim == 2:
+            roc_auc_score_val = roc_auc_score(
+                target_truth, target_pred_proba, multi_class="ovo", labels=labels
+            )
+        else:
+            roc_auc_score_val = roc_auc_score(
+                target_truth==labels[-1], target_pred_proba
+            )
 
     timestamp_str = timestamp.strftime("%Y%m%d%H%M%S")
 
@@ -169,12 +174,13 @@ def get_classification_report_from_results_as_df(results, decimals=3):
     """
     df = pd.DataFrame(results["classification_report"]).T.round(decimals)
 
-    df.loc["accuracy", "support"] = df.loc[ "macro avg", "support"]
     df["support"] = df["support"].astype(int)
 
     df = df.astype('str')
 
-    df.loc["accuracy", "precision"] = ''
-    df.loc["accuracy", "recall"] = ''
+    if "accuracy" in df.index:
+        df.loc["accuracy", "support"] = df.loc[ "macro avg", "support"]
+        df.loc["accuracy", "precision"] = ''
+        df.loc["accuracy", "recall"] = ''
 
     return df
