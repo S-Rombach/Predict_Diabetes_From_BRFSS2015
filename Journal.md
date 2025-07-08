@@ -60,3 +60,7 @@ _Metrics of discussed models_
 Differentiation between `no dia`, `pre` and `dia` does not seem promising. Differentiation between `pre` and `dia` works better than differentiation between all three, but differentiiation between `no dia` and some form of diabetes even better. A hierarchical approach to first assess the presence of diabetes and the exact form afterwards seems more promising.
 
 The aim of this project is therefore revised to **predict any form of diabetes**.
+
+### Predict presence of any form of diabetes
+
+Overall precision, the recall of `dia`, balanced accuracy and roc-auc score improve when predicting just two classes (see `20250702154506`) with Random Forests. Optimizing hyperparameters (see `20250703130629`) further lead to improved performance.
