@@ -6,17 +6,22 @@ from pathlib import Path
 # Use 'pyproject.toml' file in the project root as indicator for the project root.
 # It is also possible to hard code this variable to the project path.
 BASE_DIR = next(
-    (str(p) for p in [Path.cwd(), *Path.cwd().parents] if (p / "pyproject.toml").exists()),
+    (
+        str(p)
+        for p in [Path.cwd(), *Path.cwd().parents]
+        if (p / "pyproject.toml").exists()
+    ),
     "",
 )
 """ Base directory of the project, used to construct paths relative to this script. """
 
 if BASE_DIR is None or BASE_DIR == "":
-    raise FileNotFoundError("Could not find 'pyproject.toml' as indicator of the project root."
-                            " Initialization of directory constants is not possible."
-                            " Add a file with name to the project root or change the"
-                            " evaluation mechanism in 'src/config.py'.")
-
+    raise FileNotFoundError(
+        "Could not find 'pyproject.toml' as indicator of the project root."
+        " Initialization of directory constants is not possible."
+        " Add a file with name to the project root or change the"
+        " evaluation mechanism in 'src/config.py'."
+    )
 
 
 DATA_DIR = os.path.join(BASE_DIR, "data")
@@ -47,3 +52,20 @@ MODELS_DIR = os.path.join(BASE_DIR, "models")
 
 STUDY_DIR = os.path.join(BASE_DIR, "studies")
 """ Directory for optuna studies and related files. """
+
+MODEL_ALIASES = {
+    "HistGradientBoostingClassifier": "hgb",
+    "RandomForestClassifier": "rf",
+    "Sequential": "nn",
+    "GradientBoostingClassifier": "gb",
+    "ExtraTreesClassifier": "et",
+    "BaggingClassifier": "bag",
+    "DecisionTreeClassifier": "dt",
+    "AdaBoostClassifier": "ada",
+    "RidgeClassifier": "ridge",
+    "KNeighborsClassifier": "knn",
+    "LogisticRegression": "logreg",
+    "MLPClassifier": "mlp",
+    "GaussianNB": "gnb",
+}
+""" Short aliases for common classifiers. """
