@@ -103,7 +103,7 @@ def evaluate_classifier(
         "recall": recall_score_val,
         "precision": precision_score_val,
         "bal_accuracy": balanced_accuracy_val,
-        "roc_auc_score": roc_auc_score_val,
+        "roc_auc_score": roc_auc_score_val if pd.notna(roc_auc_score_val) else '',
         "conf_matrix": {
             f"C_{true_class}_{pred_class}": int(
                 confusion_matrix_val[true_class, pred_class]
