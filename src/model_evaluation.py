@@ -96,7 +96,7 @@ def evaluate_classifier(
 
     timestamp_str = timestamp.strftime("%Y%m%d%H%M%S")
 
-    model_name = f"{timestamp_str}_{classifier.__class__.__name__}_f1{int(f1_score_val * 1000):05d}_{model_purpose}_{special_features}"
+    model_name = f"{timestamp_str}_{classifier.__class__.__name__}_f1{int(f1_score_val * 10000):05d}_{model_purpose}_{special_features}"
 
     
 
