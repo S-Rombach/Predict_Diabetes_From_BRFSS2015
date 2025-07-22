@@ -1,4 +1,7 @@
-# config.py
+"""
+This module contains configuration constants for the project.
+It defines paths for data directories, model directories, and other project-related constants.
+"""
 import os
 from pathlib import Path
 
