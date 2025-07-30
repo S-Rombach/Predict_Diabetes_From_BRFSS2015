@@ -87,15 +87,19 @@ Other estimators were used to train a `no dia` vs `dia` baseline model and a mod
 
 Numerical columns `BMI`, `MentHlth`, `PhysHlth` were divided into categories by different thresholds. A random-forest and a logistic-regression model were trained and optimized along different thresholds and hyperparameters.
 
-Differences between their baseline and optimized versions are small (~.05 f1-score). This is probably due to the fact the BMI is the most important feature and categorization does not add information. The following table shows the results of the optimized models, sorted by model class and descending f1:
+Differences between their baseline and optimized versions are small (~.001 f1-score). The following table shows the results of the optimized models, sorted by model class and descending f1:
 
 |   timestamp_str | model_class            | predicts    | model_purpose   |       f1 |   recall |   precision |   bal_accuracy |   roc_auc_score |   class dia recall |
 |-----------------|------------------------|-------------|-----------------|----------|----------|-------------|----------------|-----------------|--------------------|
-|  20250722210637 | LogisticRegression     | dia, no dia | opt., feat.eng. | 0.815105 | 0.81335  |    0.816942 |       0.63716  |        0.773281 |           0.387727 |
 |  20250709234440 | LogisticRegression     | dia, no dia | baseline, smote | 0.770364 | 0.734724 |    0.853811 |       0.741589 |        0.815147 |           0.751307 |
+|  20250728152709 | LogisticRegression     | dia, no dia | opt., feat.eng. | 0.7699   | 0.733663 |    0.857578 |       0.749562 |        0.824337 |           0.77207  |
 |  20250709202244 | LogisticRegression     | dia, no dia | baseline        | 0.769785 | 0.733821 |    0.855063 |       0.744179 |        0.819652 |           0.758843 |
 |  20250702154506 | RandomForestClassifier | dia, no dia | baseline        | 0.829746 | 0.839949 |    0.822788 |       0.626772 |        0.802578 |           0.324977 |
 |  20250709202524 | RandomForestClassifier | dia, no dia | baseline, smote | 0.826173 | 0.823488 |    0.829097 |       0.663665 |        0.802101 |           0.437404 |
 |  20250711123224 | RandomForestClassifier | dia, no dia | opt., feat.eng. | 0.826173 | 0.823488 |    0.829097 |       0.663665 |        0.802101 |           0.437404 |
 
-Indeed, optimization efforts focused on hyperparameter tuning and feature selection did not yield significant improvements in model performance, but rather diminished the recall of the `dia` class severly (from ~0.75 to ~0.38 for Logistic Regression and ~0.43 for Random Forest). The best models remain the ones trained on the original features without additional feature engineering.
+Indeed, optimization efforts focused on hyperparameter tuning and feature selection did only yield small to moderate improvements in class dia recall, at the cost of small losses to the f1-score. The loss can be attributed to the fact that the model is trained on a highly imbalanced dataset, where class `no dia` is much more prevalent than class `dia`. The model therefore tends to predict class `no dia` more often, which leads to a lower f1-score when optimizing for recall of class `dia`.
+
+## Conclusion
+
+The project is successful in predicting the presence of diabetes with a LogisticRegression model on feature engineered data. The model achieves a f1-score of 0.7699, a recall of 0.77207 for class `dia`, and a balanced accuracy of 0.749562. The roc-auc score is 0.824337, indicating a good ability to distinguish between the two classes.
