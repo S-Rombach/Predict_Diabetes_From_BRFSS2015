@@ -4,7 +4,7 @@ This journal intents to capture the thought, reasoning and decision process duri
 
 ## Baseline results
 
-### Predict two types of diabtes
+### Predict two types of diabetes
 
 All shown models are default RandomForests with `class_weight="balanced"`. Models are referenced by their timestamp for brevity.
 
@@ -89,7 +89,7 @@ Numerical columns `BMI`, `MentHlth`, `PhysHlth` were divided into categories by 
 
 Differences between their baseline and optimized versions are small (~.001 f1-score). The following table shows the results of the optimized models, sorted by model class and descending f1:
 
-|   timestamp_str | model_class            | predicts    | model_purpose   |       f1 |   recall |   precision |   bal_accuracy |   roc_auc_score |   class dia recall |
+|           model | model_class            | predicts    | model_purpose   |       f1 |   recall |   precision |   bal_accuracy |   roc_auc_score |   class dia recall |
 |-----------------|------------------------|-------------|-----------------|----------|----------|-------------|----------------|-----------------|--------------------|
 |  20250709234440 | LogisticRegression     | dia, no dia | baseline, smote | 0.770364 | 0.734724 |    0.853811 |       0.741589 |        0.815147 |           0.751307 |
 |  20250728152709 | LogisticRegression     | dia, no dia | opt., feat.eng. | 0.7699   | 0.733663 |    0.857578 |       0.749562 |        0.824337 |           0.77207  |
@@ -102,4 +102,4 @@ Indeed, optimization efforts focused on hyperparameter tuning and feature select
 
 ## Conclusion
 
-The project is successful in predicting the presence of diabetes with a LogisticRegression model on feature engineered data. The model achieves a f1-score of 0.7699, a recall of 0.77207 for class `dia`, and a balanced accuracy of 0.749562. The roc-auc score is 0.824337, indicating a good ability to distinguish between the two classes.
+The project is successful in predicting the presence of diabetes with a LogisticRegression model on feature engineered data. The model achieves a f1-score of 0.7699, a recall of 0.77207 for class `dia` (merged `pre` and `dia`), and a balanced accuracy of 0.749562. The roc-auc score is 0.824337, indicating a good ability to distinguish between the two classes.
